@@ -1,5 +1,5 @@
 <article>
-  <p *ngFor="let paragraph of article" >
+  <p *ngFor="let paragraph of article" (mouseup)="clickHandler($event)">
     {{paragraph}}
   </p>
 </article>

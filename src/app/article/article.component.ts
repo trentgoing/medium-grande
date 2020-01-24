@@ -21,4 +21,11 @@ export class ArticleComponent implements OnInit {
   ngOnInit() {
   }
 
+  clickHandler(event): void {
+    console.log(event.srcElement.textContent);
+    debugger;
+    //use window.getSelection() andthe offsets within to track what has been highlighted.  
+    // then use to create/add to the other notes
+  }
+
 }
