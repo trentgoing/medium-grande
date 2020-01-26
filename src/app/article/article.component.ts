@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TextSnippet } from '../types/textSnippet';
 
 @Component({
@@ -8,7 +8,8 @@ import { TextSnippet } from '../types/textSnippet';
 })
 export class ArticleComponent implements OnInit {
   article: String[];
-  selected: TextSnippet;
+  @Input() selected: TextSnippet;
+  @Output() selectionMade = new EventEmitter<TextSnippet>();
 
   constructor() {
     this.article = 
@@ -18,7 +19,6 @@ export class ArticleComponent implements OnInit {
     `Praesent sollicitudin, quam nec tempor molestie, elit vehicula quam, fringilla fermentum massa nulla eu elit. Nullam nec egestas arcu, ac maximus odio. Integer ac vulputate libero. In ac dui eget felis laoreet placerat. Morbi dapibus turpis at enim ultricies, eget venenatis risus elementum. Cras molestie arcu eget magna tristique, nec tristique tellus venenatis. Praesent at scelerisque velit. Cras nec est magna. Vivamus vitae porta dolor. Vivamus felis dui, tincidunt ac nisl non, suscipit luctus metus.`,
     `Nullam viverra ante nunc, eget ullamcorper lacus fringilla vel. Nam non dui ex. Vivamus nunc lacus, mollis eget lectus in, finibus molestie tellus. Etiam interdum libero enim, pretium laoreet mauris volutpat vel. Ut ornare ultrices velit, a rutrum odio blandit non. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla pharetra odio ut nulla aliquam sagittis. Quisque nisl orci, fringilla et tellus ut, ornare vehicula nulla. Quisque condimentum et massa ut aliquam. Integer vestibulum tellus sed dui vehicula,`,
     `eu elementum elit varius. Aenean libero dolor, vulputate quis vitae, laoreet sit amet felis. Pellentesque sit amet laoreet sem, sit amet scelerisque arcu. Praesent pulvinar mauris a finibus porttitor. Aenean sodales convallis mi, quis tincidunt ante consequat.`];
-    this.selected = {content: null,paragraphId: null, startCharacter: null, endCharacter: null}
   }
 
   ngOnInit() {
@@ -30,11 +30,9 @@ export class ArticleComponent implements OnInit {
       if (selection.toString().length > 0) {
         if (selection.anchorNode === selection.focusNode) { // Check to see if it's in 1 paragraph, as Medium does
           // Update the "selected" field to indicate a possible note.  This should update to provide a button
-          console.log(event.srcElement);
-          console.log(selection);
           this.selected = {
             content: selection.toString(),
-            paragraphId: event.srcElement,
+            paragraphId: event.srcElement.className,
             startCharacter: selection.anchorOffset > selection.focusOffset ? selection.focusOffset : selection.anchorOffset,
             endCharacter: selection.anchorOffset < selection.focusOffset ? selection.focusOffset : selection.anchorOffset
           }
@@ -47,6 +45,7 @@ export class ArticleComponent implements OnInit {
           endCharacter: null
         }
       }
+      this.selectionMade.emit(this.selected);
     }
   }
 

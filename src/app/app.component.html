@@ -330,13 +330,13 @@
 
   <!-- Highlight Card -->
   <article [className]="'article'">
-    <app-article></app-article>
+    <app-article [selected]="selection" (selectionMade)="onSelected($event)"></app-article>
   </article>
   <aside [className]="'margin'">
-    <app-margin></app-margin>
+    <app-margin [selection]="selection" (selectionMade)="onSelected($event)"></app-margin>
   </aside>
-
 </div>
 
+{{selection.content}}
 
 <router-outlet></router-outlet>

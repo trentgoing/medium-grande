@@ -1,1 +1,5 @@
-<p>margin works!</p>
+<div>
+  <div *ngIf="selection.content !== null">
+    <app-note-input [selection]="selection" (selectionMade)="onMarginSelected($event)"></app-note-input>
+  </div>
+</div>

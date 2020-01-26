@@ -1,6 +1,8 @@
 export class TextSnippet {
-  content: string;
-  paragraphId: number;
-  startCharacter: number;
-  endCharacter: number;
+  constructor(
+    public content: string,
+    public paragraphId: number,
+    public startCharacter: number,
+    public endCharacter: number
+  ) {}
 }
