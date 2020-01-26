@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { ArticleComponent } from './article/article.component';
 import { MarginComponent } from './margin/margin.component';
 import { NoteInputComponent } from './note-input/note-input.component';
+import { NoteComponent } from './note/note.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticleComponent,
     MarginComponent,
-    NoteInputComponent
+    NoteInputComponent,
+    NoteComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Note } from '../types/note';
+import { NotesService } from '../notes.service';
 import { TextSnippet } from '../types/textSnippet';
+import { Note } from '../types/note';
 
 @Component({
   selector: 'app-note-input',
@@ -12,8 +13,7 @@ export class NoteInputComponent implements OnInit {
   @Output() selectionMade = new EventEmitter<TextSnippet>();
   noteMessage: string = '';
   
-  
-  constructor() { }
+  constructor(private noteService: NotesService) { }
 
   ngOnInit() {
   }
@@ -31,6 +31,8 @@ export class NoteInputComponent implements OnInit {
       []);
 
     console.log('Submit new data: ', JSON.stringify(note));
+    this.noteService.addNote(note);
+
     // Then clear the selection
     let selected: TextSnippet = new TextSnippet(
       null,
