@@ -27,7 +27,7 @@ export class ArticleService {
     return paragraphs.map((paragraph, index) => {
       let charArray: Array<string> = paragraph.split('');
       let markTagsToInsert: Array<[number, string]> = [];
-      if (this.noteService.notes[index]) {
+      if (this.noteService.notes && this.noteService.notes[index]) {
         this.noteService.notes[index].forEach(note => {
           markTagsToInsert.push([note.startCharacter, '<mark>'])
           markTagsToInsert.push([note.endCharacter, '</mark>'])

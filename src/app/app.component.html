@@ -313,7 +313,7 @@
   <div *ngIf="authService.userInfo !==null">
     <span>Welcome {{authService.userInfo.username}}</span>
     <div class="spacer"></div>
-    <a (click)="authService.logout()">
+    <a (click)="logoutClick()">
       <span>Log Out</span>
     </a>
     <div class="spacer"></div>

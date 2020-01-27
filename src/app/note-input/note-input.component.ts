@@ -3,6 +3,7 @@ import { NotesService } from '../notes.service';
 import { TextSnippet } from '../types/textSnippet';
 import { Note } from '../types/note';
 import { ArticleService } from '../article.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-note-input',
@@ -15,6 +16,7 @@ export class NoteInputComponent implements OnInit {
   noteMessage: string = '';
   
   constructor(private noteService: NotesService,
+              private authService: AuthService,
               private articleService: ArticleService) { }
 
   ngOnInit() {
@@ -22,28 +24,28 @@ export class NoteInputComponent implements OnInit {
 
   submitNote() {
     let currentSelection = this.selection 
+    if (this.authService.userInfo !== null) {
+      // Add to notes list
+      let note = new Note(
+        this.noteMessage, 
+        currentSelection.paragraphId, 
+        currentSelection.startCharacter, 
+        currentSelection.endCharacter, 
+        this.authService.userInfo.id,
+        []);
 
-    // Add to notes list
-    let note = new Note(
-      this.noteMessage, 
-      currentSelection.paragraphId, 
-      currentSelection.startCharacter, 
-      currentSelection.endCharacter, 
-      0,
-      []);
+      this.noteService.addNote(note);
+      this.articleService.getParagraphs();
 
-    console.log('Submit new data: ', JSON.stringify(note));
-    this.noteService.addNote(note);
-    this.articleService.getParagraphs();
-
-    // Then clear the selection
-    let selected: TextSnippet = new TextSnippet(
-      null,
-      null,
-      null,
-      null
-    )
-    this.selectionMade.emit(selected);
+      // Then clear the selection
+      let selected: TextSnippet = new TextSnippet(
+        null,
+        null,
+        null,
+        null
+      )
+      this.selectionMade.emit(selected);
+    }
   }
 
 }

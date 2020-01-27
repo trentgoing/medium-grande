@@ -7,7 +7,6 @@ import { User } from './types/user';
 })
 export class AuthService {
   userInfo: User;
-  userId: number;
 
   constructor(public router: Router) {
     let local: string = window.localStorage.getItem('userInfo');
@@ -37,7 +36,7 @@ export class AuthService {
     if (conflict === true) {
       return 'That email is already taken';
     }
-    users.push(new User((users.length + 1), email, username, password));
+    users.push(new User((users.length), email, username, password));
     window.localStorage.setItem('users', JSON.stringify(users));
     // 2nd log the user in!
     this.login(username, password);
