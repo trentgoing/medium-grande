@@ -42,6 +42,7 @@ export class NoteInputComponent implements OnInit {
         null,
         null,
         null,
+        null,
         null
       )
       this.selectionMade.emit(selected);

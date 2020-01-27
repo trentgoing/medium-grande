@@ -29,7 +29,8 @@ export class ArticleComponent implements OnInit {
             content: selection.toString(),
             paragraphId: event.srcElement.className,
             startCharacter: selection.anchorOffset > selection.focusOffset ? selection.focusOffset + indexOfLastMarker : selection.anchorOffset + indexOfLastMarker,
-            endCharacter: selection.anchorOffset < selection.focusOffset ? selection.focusOffset + indexOfLastMarker : selection.anchorOffset + indexOfLastMarker
+            endCharacter: selection.anchorOffset < selection.focusOffset ? selection.focusOffset + indexOfLastMarker : selection.anchorOffset + indexOfLastMarker,
+            mouse: [event.clientX, event.clientY]
           }
         }
       } else {
@@ -37,7 +38,8 @@ export class ArticleComponent implements OnInit {
           content: null,
           paragraphId: null,
           startCharacter: null,
-          endCharacter: null
+          endCharacter: null,
+          mouse: null
         }
       }
       this.selectionMade.emit(this.selected);

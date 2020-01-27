@@ -43,14 +43,14 @@ export class NotesService {
   editNote(paragraphId: number, index: number, note: Note): void {
     if (this.authService.userInfo && note.userId === this.authService.userInfo.id){
       this.notes[paragraphId][index] = note;
-      window.localStorage.setItem('notes', JSON.stringify(this.notes));
+      window.localStorage.setItem(`notes-${this.authService.userInfo.id}`, JSON.stringify(this.notes));
     }
   }
 
   deleteNote(paragraphId: number, index: number): void {
     if (this.authService.userInfo) {
       this.notes[paragraphId].splice(index, 1);
-      window.localStorage.setItem('notes', JSON.stringify(this.notes));
+      window.localStorage.setItem(`notes-${this.authService.userInfo.id}`, JSON.stringify(this.notes));
     }
   }
 

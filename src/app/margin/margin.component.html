@@ -1,7 +1,4 @@
 <div>
-  <div *ngIf="selection.content !== null">
-    <app-note-input [selection]="selection" (selectionMade)="onMarginSelected($event)"></app-note-input>
-  </div>
   <div *ngFor="let paragraph of paragraphs">
     <app-note *ngFor="let note of noteService.notes[paragraph]; let i = index" [note]="note" [index]="i" (editMade)="getNotes()"></app-note>
   </div>

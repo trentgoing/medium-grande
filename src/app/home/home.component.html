@@ -3,6 +3,9 @@
     <app-article [selected]="selection" (selectionMade)="onSelected($event)"></app-article>
   </article>
   <aside [className]="'margin'">
-    <app-margin [selection]="selection" (selectionMade)="onSelected($event)"></app-margin>
+    <app-margin [selection]="selection"></app-margin>
   </aside>
+</div>
+<div *ngIf="selection.content !== null">
+  <app-note-input [selection]="selection" (selectionMade)="onSelected($event)"></app-note-input>
 </div>

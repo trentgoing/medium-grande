@@ -17,9 +17,8 @@ export class AppComponent {
 
 
   logoutClick() {
-    this.authService.logout(); 
+    this.authService.logout();
     this.noteService.getNotes();
-    console.log(this.noteService.notes);
     this.articleService.getParagraphs();
   }
   

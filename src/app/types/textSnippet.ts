@@ -3,6 +3,7 @@ export class TextSnippet {
     public content: string,
     public paragraphId: number,
     public startCharacter: number,
-    public endCharacter: number
+    public endCharacter: number,
+    public mouse: Array<number>
   ) {}
 }

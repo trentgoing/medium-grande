@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TextSnippet } from '../types/textSnippet';
 import { NotesService } from '../notes.service';
-import { Note } from '../types/note';
 import { ArticleService } from '../article.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { ArticleService } from '../article.service';
 })
 export class MarginComponent implements OnInit {
   @Input() selection: TextSnippet;
-  @Output() selectionMade = new EventEmitter<TextSnippet>();
   notes: object;
   
   constructor(private noteService: NotesService,
@@ -19,10 +17,6 @@ export class MarginComponent implements OnInit {
 
   ngOnInit() {
     this.getNotes();
-  }
-
-  onMarginSelected(event):void {
-    this.selectionMade.emit(event);
   }
 
   getNotes(): void {

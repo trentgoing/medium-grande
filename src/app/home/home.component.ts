@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.selection = {content: null,paragraphId: null, startCharacter: null, endCharacter: null}
+    this.selection = {content: null,paragraphId: null, startCharacter: null, endCharacter: null, mouse: null}
   }
 
   onSelected(selectionMade: TextSnippet) {
