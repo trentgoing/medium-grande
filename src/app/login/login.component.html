@@ -1,0 +1,38 @@
+<div [className]="'authform'">
+  <h3>Log In!</h3>
+  <form #loginForm="ngForm" autocomplete="off">
+    <div>
+      <label>Username:
+        <input 
+          type="text" 
+          class="form-control" 
+          id="username-input"
+          required
+          [(ngModel)]="username" 
+          name="username">
+      </label>
+    </div>
+    <div>
+      <label>Password:
+        <input 
+          type="password" 
+          class="form-control" 
+          id="password-input"
+          required
+          [(ngModel)]="password" 
+          name="password">
+      </label>
+    </div>
+    <button 
+      [hidden]="!(loginForm.form.valid)" 
+      type="submit" 
+      class="btn btn-success"
+      (click)="submitLogin(); loginForm.reset()"
+    >
+      Submit
+    </button>
+  </form>
+  <div>
+    <p>Not yet signed up? Sign up <a routerLink="/signup">here</a></p>
+  </div>
+</div>

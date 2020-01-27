@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TextSnippet } from './types/textSnippet';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +8,7 @@ import { TextSnippet } from './types/textSnippet';
 })
 export class AppComponent {
   title = 'vfi-fe-challenge';
-  selection: TextSnippet;
   
-  constructor() {
-    this.selection = {content: null,paragraphId: null, startCharacter: null, endCharacter: null}
-  }
-
-  onSelected(selectionMade: TextSnippet) {
-    this.selection = selectionMade;
-  }
+  constructor(public authService: AuthService) {}
+  
 }

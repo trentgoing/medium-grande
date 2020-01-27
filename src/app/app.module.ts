@@ -8,6 +8,10 @@ import { ArticleComponent } from './article/article.component';
 import { MarginComponent } from './margin/margin.component';
 import { NoteInputComponent } from './note-input/note-input.component';
 import { NoteComponent } from './note/note.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { SignupComponent } from './signup/signup.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { NoteComponent } from './note/note.component';
     ArticleComponent,
     MarginComponent,
     NoteInputComponent,
-    NoteComponent
+    NoteComponent,
+    LoginComponent,
+    HomeComponent,
+    SignupComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

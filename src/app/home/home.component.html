@@ -1,0 +1,8 @@
+<div class="content" role="main">
+  <article [className]="'article'">
+    <app-article [selected]="selection" (selectionMade)="onSelected($event)"></app-article>
+  </article>
+  <aside [className]="'margin'">
+    <app-margin [selection]="selection" (selectionMade)="onSelected($event)"></app-margin>
+  </aside>
+</div>
