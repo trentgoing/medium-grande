@@ -7,7 +7,9 @@ import { Note } from './types/note';
 export class NotesService {
   notes: object;
 
-  constructor() { }
+  constructor() { 
+    this.getNotes();
+  }
 
   getNotes(): object {
     let local: string = window.localStorage.getItem('notes');

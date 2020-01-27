@@ -1,7 +1,6 @@
 <article>
-  <div *ngFor="let paragraph of article; index as i" >
-    <p (mouseup)="clickHandler($event)" [className]="i">
-      {{paragraph}} 
+  <div *ngFor="let paragraph of articleService.paragraphs; index as i" >
+    <p (mouseup)="clickHandler($event)" [className]="i" [innerHTML]="paragraph">
     </p>
   </div>
 </article>
