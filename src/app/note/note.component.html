@@ -1,4 +1,34 @@
 <div [className]="'note'">
-  {{note.message}}
+  <div [hidden]="editing">
+    {{note.message}}
+    <button (click)="showEdit()">
+      Edit
+    </button>
+  </div>
+  <div [hidden]="!editing">
+    <form #noteForm="ngForm" autocomplete="off">
+      <label>Note:
+        <input 
+          type="text" 
+          class="form-control" 
+          required
+          [(ngModel)]="note.message" 
+          [id]="'message-' + note.paragraphId + '-' + index"
+          [name]="'message-' + note.paragraphId + '-' + index">
+      </label>
+      <button 
+        [hidden]="!(noteForm.form.valid)" 
+        type="submit" 
+        class="btn btn-success"
+        (click)="saveNote();"
+      >
+        Save
+      </button>
+    </form>
+    <button (click)="deleteNote()">
+      Delete
+    </button>
+  </div>
   <!-- <p>{{note.paragraphId}}:{{note.startCharacter}}-{{note.endCharacter}}</p> -->
 </div>
+

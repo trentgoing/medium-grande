@@ -21,13 +21,23 @@ export class NotesService {
     return this.notes;
   }
 
-  addNote(note: Note):void {
+  addNote(note: Note): void {
     if (this.notes[note.paragraphId]) {
       this.notes[note.paragraphId].push(note);
       this.notes[note.paragraphId].sort(this.noteSort) 
     } else {
       this.notes[note.paragraphId] = [note];
     }
+    window.localStorage.setItem('notes', JSON.stringify(this.notes));
+  }
+
+  editNote(paragraphId: number, index: number, note: Note): void {
+    this.notes[paragraphId][index] = note;
+    window.localStorage.setItem('notes', JSON.stringify(this.notes));
+  }
+
+  deleteNote(paragraphId: number, index: number): void {
+    this.notes[paragraphId].splice(index, 1);
     window.localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
