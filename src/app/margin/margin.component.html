@@ -2,5 +2,7 @@
   <div *ngIf="selection.content !== null">
     <app-note-input [selection]="selection" (selectionMade)="onMarginSelected($event)"></app-note-input>
   </div>
-  <app-note *ngFor="let note of notes" [note]="note"></app-note>
+  <div *ngFor="let paragraph of paragraphs">
+    <app-note *ngFor="let note of notes[paragraph]" [note]="note"></app-note>
+  </div>
 </div>

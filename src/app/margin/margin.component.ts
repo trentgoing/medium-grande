@@ -11,7 +11,7 @@ import { Note } from '../types/note';
 export class MarginComponent implements OnInit {
   @Input() selection: TextSnippet;
   @Output() selectionMade = new EventEmitter<TextSnippet>();
-  notes: Array<Note>;
+  notes: object;
   
   constructor(private noteService: NotesService) { }
 
@@ -25,5 +25,9 @@ export class MarginComponent implements OnInit {
 
   getNotes(): void {
     this.notes = this.noteService.getNotes();
+  }
+
+  get paragraphs(): Array<string> {
+    return Object.keys(this.notes)
   }
 }
