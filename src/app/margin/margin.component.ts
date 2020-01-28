@@ -27,4 +27,20 @@ export class MarginComponent implements OnInit {
   get paragraphs(): Array<string> {
     return Object.keys(this.notes)
   }
+  
+  top(paragraph: string): number {
+    if (paragraph === "0") {
+      return 0;
+    }
+    let currentParagraphTop: number = document.getElementById('paragraph-' + paragraph).offsetTop;
+    let originalParagraphTop: number = document.getElementById('paragraph-0').offsetTop;
+    let previousParagraphNotesTop: number = document.getElementById('paragraph-notes-' + (parseInt(paragraph) - 1)).offsetTop;
+    let previousParagraphNotesHeight: number = document.getElementById('paragraph-notes-' + (parseInt(paragraph) - 1)) ? document.getElementById('paragraph-notes-' + (parseInt(paragraph) - 1)).offsetHeight : 0;
+    let previousBottom: number = previousParagraphNotesTop + previousParagraphNotesHeight;
+    let idealPosition: number =  currentParagraphTop - originalParagraphTop;
+    if (previousBottom > idealPosition) {
+      return previousBottom;
+    } 
+    return idealPosition;
+  }
 }

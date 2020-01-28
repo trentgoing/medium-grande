@@ -1,5 +1,5 @@
 <div>
-  <div *ngFor="let paragraph of paragraphs">
+  <div *ngFor="let paragraph of paragraphs; let p = index" class="paragraph" [id]="'paragraph-notes-' + p" [style.top.px]="top(paragraph)">
     <app-note *ngFor="let note of noteService.notes[paragraph]; let i = index" [note]="note" [index]="i" (editMade)="getNotes()"></app-note>
   </div>
 </div>

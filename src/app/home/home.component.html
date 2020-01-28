@@ -2,7 +2,7 @@
   <article [className]="'article'">
     <app-article [selected]="selection" (selectionMade)="onSelected($event)"></app-article>
   </article>
-  <aside [className]="'margin'">
+  <aside [className]="'margin'" id='margin'>
     <app-margin [selection]="selection"></app-margin>
   </aside>
 </div>
