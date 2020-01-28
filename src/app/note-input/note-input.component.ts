@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NotesService } from '../notes.service';
+import { NotesService } from '../services/notes.service';
 import { TextSnippet } from '../types/textSnippet';
 import { Note } from '../types/note';
-import { ArticleService } from '../article.service';
-import { AuthService } from '../auth.service';
+import { ArticleService } from '../services/article.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-note-input',

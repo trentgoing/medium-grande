@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth.service';
-import { ArticleService } from './article.service';
-import { NotesService } from './notes.service';
+import { AuthService } from './services/auth.service';
+import { ArticleService } from './services/article.service';
+import { NotesService } from './services/notes.service';
 
 @Component({
   selector: 'app-root',

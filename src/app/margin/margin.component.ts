@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TextSnippet } from '../types/textSnippet';
-import { NotesService } from '../notes.service';
-import { ArticleService } from '../article.service';
+import { NotesService } from '../services/notes.service';
+import { ArticleService } from '../services/article.service';
 
 @Component({
   selector: 'app-margin',

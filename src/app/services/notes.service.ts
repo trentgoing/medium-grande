@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Note } from './types/note';
+import { Note } from '../types/note';
 import { AuthService } from './auth.service';
 
 @Injectable({
