@@ -22,7 +22,7 @@ export class NotesService {
       let local: string = window.localStorage.getItem(`notes-${this.authService.userInfo.id}`);
       if (local === null) {
         // notes has never been defined, and we can set to empty
-        window.localStorage.setItem('notes', JSON.stringify({}));
+        window.localStorage.setItem(`notes-${this.authService.userInfo.id}`, JSON.stringify({}));
         this.notes = {};
         return this.notes;
       }
@@ -38,7 +38,7 @@ export class NotesService {
     User login information is confirmed before allowing addition.
   */
   addNote(note: Note): void {
-    if (this.authService.userInfo !== null) {
+    if (this.authService.userInfo !== null && note.userId === this.authService.userInfo.id) {
       if (this.notes[note.paragraphId]) {
         this.notes[note.paragraphId].push(note);
         this.notes[note.paragraphId].sort(this.noteSort) 
