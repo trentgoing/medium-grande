@@ -45,11 +45,12 @@ export class AuthService {
       setTimeout(() => {
         this.errorMessage = null;
       }, 3000);
+    } else {
+      users.push(new User((users.length), email, username, password));
+      window.localStorage.setItem('users', JSON.stringify(users));
+      // 2nd log the user in!
+      this.login(username, password);
     }
-    users.push(new User((users.length), email, username, password));
-    window.localStorage.setItem('users', JSON.stringify(users));
-    // 2nd log the user in!
-    this.login(username, password);
   }
 
   login(username: string, password: string): void {
