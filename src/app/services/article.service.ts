@@ -9,6 +9,11 @@ export class ArticleService {
   paragraphs: Array<string>;
   constructor(private noteService: NotesService) { }
 
+  /*
+    Function to retrieve the article content.  If requesting from server
+    or if additional articles were incorporated, this would be where it
+    goes
+  */
   getArticle(): string {
     return `Lorem ipsum dolor sit amet, adipiscing elit. Aenean dictum elementum purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Ut porta venenatis velit, ac scelerisque nisi lobortis eu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In pellentesque elementum dolor vel aliquam. Integer maximus mattis nisi non efficitur. Nam elementum venenatis nibh sed feugiat. Aliquam a diam sed nulla lobortis sollicitudin ac vel lorem.
     Duis eu dui id sem dapibus sodales egestas et arcu. Aenean convallis nunc eu risus bibendum efficitur. Aenean congue sapien a tortor aliquam rhoncus. Nulla blandit suscipit justo, ac tincidunt mauris pharetra in. Phasellus congue congue convallis. Nullam feugiat nisl vel gravida rutrum. Vestibulum id quam gravida, gravida mauris id, bibendum nulla. Fusce vitae felis malesuada, mattis sem a, mattis risus.
@@ -18,11 +23,22 @@ export class ArticleService {
     eu elementum elit varius. Aenean libero dolor, vulputate quis vitae, laoreet sit amet felis. Pellentesque sit amet laoreet sem, sit amet scelerisque arcu. Praesent pulvinar mauris a finibus porttitor. Aenean sodales convallis mi, quis tincidunt ante consequat.`
   }
 
+  /*
+    In order to render out notes aligned to a given paragraph, separate 
+    the article's paragraphs to be rendered and managed individually
+  */
   getParagraphs(): Array<string> {
     this.paragraphs = this.interpolateHighlights(this.getArticle().split("\n"));
     return this.paragraphs;
   }
 
+  /*
+    This function is what injects the highlights into the article text, 
+    while maintaining the structure and content of the article itself.
+    The notes are logged by character index on the text, so for a given 
+    paragraph, all start and end indexes for notes are aggregated, 
+    and then injected in their character index order.
+  */
   interpolateHighlights(paragraphs: Array<string>): Array<string> {
     return paragraphs.map((paragraph, index) => {
       let charArray: Array<string> = paragraph.split('');
@@ -44,6 +60,10 @@ export class ArticleService {
     });
   }
 
+  /*
+    Utility sort to order highlighting tags in case one highlight is 
+    nested within another.
+  */
   markTagSort(a: [number, string], b: [number, string]): number {
     if (a[0] < b[0]) {
       return -1; 

@@ -18,6 +18,12 @@ export class ArticleComponent implements OnInit {
     this.article = this.articleService.getParagraphs();
   }
 
+  /*
+    If a user selects text content, then the app should register the
+     selection and allow a note to be entered.  The selections are managed 
+     across both article and note-input components by beinghoused in the
+     Home component.  This function updates that variable based on selections.
+  */
   clickHandler(event): void {
     if (window.getSelection) {
       let selection = window.getSelection();
@@ -34,13 +40,13 @@ export class ArticleComponent implements OnInit {
           }
         }
       } else {
-        this.selected = {
-          content: null,
-          paragraphId: null,
-          startCharacter: null,
-          endCharacter: null,
-          mouse: null
-        }
+        this.selected = new TextSnippet(
+          null,
+          null,
+          null,
+          null,
+          null
+        )
       }
       this.selectionMade.emit(this.selected);
     }

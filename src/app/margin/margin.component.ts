@@ -19,15 +19,32 @@ export class MarginComponent implements OnInit {
     this.getNotes();
   }
 
+  /*
+    Handles event from individual notes when updates are made
+    and refreshes the notes list as well as highlights on text. 
+  */
   getNotes(): void {
     this.notes = this.noteService.getNotes();
     this.articleService.getParagraphs();
   }
 
+  /*
+    Notes have been saved according to which paragraph the text 
+    to which they correspond appears in.  Get the list of paragraphs 
+    for iterating over here, used in the template.
+  */
   get paragraphs(): Array<string> {
     return Object.keys(this.notes)
   }
   
+  /*
+    The below function positions notes within the margin so that 
+    they are aligned with their corrosponding paragraph as close
+    as possible.  
+    First, the spacing is measured to the top of the paragraph
+    Second, if too many notes already exist, additional space is added
+    in order to prevent overlap.
+  */
   top(paragraph: string): number {
     if (paragraph === "0") {
       return 0;

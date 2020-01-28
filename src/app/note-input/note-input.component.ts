@@ -22,10 +22,16 @@ export class NoteInputComponent implements OnInit {
   ngOnInit() {
   }
 
+  /* 
+    Upon clicking the submit button, the current selection is paired 
+    with the values in the note input form, and sent to the note 
+    service, before selections are cleared.
+  */
   submitNote() {
     let currentSelection = this.selection 
+    // check user's authentication
     if (this.authService.userInfo !== null) {
-      // Add to notes list
+      // Add to notes via note service
       let note = new Note(
         this.noteMessage, 
         currentSelection.paragraphId, 
@@ -33,8 +39,9 @@ export class NoteInputComponent implements OnInit {
         currentSelection.endCharacter, 
         this.authService.userInfo.id,
         []);
-
       this.noteService.addNote(note);
+      
+      // update paragraphs with new highlights
       this.articleService.getParagraphs();
 
       // Then clear the selection
@@ -47,6 +54,7 @@ export class NoteInputComponent implements OnInit {
       )
       this.selectionMade.emit(selected);
     } else {
+      // If unauthenticated, then display error
       this.authService.errorMessage = "You must login to create notes!";
       setTimeout(() => {
         this.authService.errorMessage = null;

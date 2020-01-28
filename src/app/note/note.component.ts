@@ -17,17 +17,28 @@ export class NoteComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
+  /*
+    Click handler for when the note becomes editable 
+  */
   showEdit(): void {
     this.editing = true;
   }
 
+  /*
+    Click handler for when a note being edtied is saved.
+    THis makes use of the note service to persist that value
+  */
   saveNote(): void {
     this.noteService.editNote(this.note.paragraphId, this.index, this.note);
     this.editMade.emit();
     this.editing = false;
   }
 
+  /*
+    Click handler for when a note being edtied is deleted.
+    THis also makes use of the note service to persist the removal.
+  */
   deleteNote(): void {
     this.noteService.deleteNote(this.note.paragraphId, this.index);
     this.editMade.emit();
