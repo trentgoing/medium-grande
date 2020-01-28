@@ -19,3 +19,4 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Deployment
 
+The application is running at [https://trentgoing.github.io/medium-grande/](https://trentgoing.github.io/medium-grande/)
