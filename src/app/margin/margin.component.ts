@@ -12,7 +12,7 @@ export class MarginComponent implements OnInit {
   @Input() selection: TextSnippet;
   notes: object;
   
-  constructor(private noteService: NotesService,
+  constructor(public noteService: NotesService,
               private articleService: ArticleService) { }
 
   ngOnInit() {

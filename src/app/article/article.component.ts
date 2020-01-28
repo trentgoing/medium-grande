@@ -12,7 +12,7 @@ export class ArticleComponent implements OnInit {
   @Input() selected: TextSnippet;
   @Output() selectionMade = new EventEmitter<TextSnippet>();
 
-  constructor(private articleService: ArticleService) {};
+  constructor(public articleService: ArticleService) {};
 
   ngOnInit() {
     this.article = this.articleService.getParagraphs();
