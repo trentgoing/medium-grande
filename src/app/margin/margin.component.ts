@@ -34,7 +34,12 @@ export class MarginComponent implements OnInit {
     for iterating over here, used in the template.
   */
   get paragraphs(): Array<string> {
-    return Object.keys(this.notes)
+    // return Object.keys(this.notes)
+    let result: Array<string> = []
+    for (let i = 0; i < this.articleService.paragraphs.length; i++) {
+      result.push(i.toString());
+    }
+    return result;
   }
   
   /*
@@ -51,7 +56,7 @@ export class MarginComponent implements OnInit {
     }
     let currentParagraphTop: number = document.getElementById('paragraph-' + paragraph).offsetTop;
     let originalParagraphTop: number = document.getElementById('paragraph-0').offsetTop;
-    let previousParagraphNotesTop: number = document.getElementById('paragraph-notes-' + (parseInt(paragraph) - 1)).offsetTop;
+    let previousParagraphNotesTop: number = document.getElementById('paragraph-notes-' + (parseInt(paragraph) - 1)) ? document.getElementById('paragraph-notes-' + (parseInt(paragraph) - 1)).offsetTop : 0;
     let previousParagraphNotesHeight: number = document.getElementById('paragraph-notes-' + (parseInt(paragraph) - 1)) ? document.getElementById('paragraph-notes-' + (parseInt(paragraph) - 1)).offsetHeight : 0;
     let previousBottom: number = previousParagraphNotesTop + previousParagraphNotesHeight;
     let idealPosition: number =  currentParagraphTop - originalParagraphTop;
