@@ -9,3 +9,13 @@
   padding-left: 50px;
   padding-right: 50px;
 }
+
+.notifier {
+  position: fixed;
+  background-color: lightgrey;
+  color: maroon;
+  width: 240px;
+  left: 50%;
+  margin-left: -120px;
+  text-align: center;
+}

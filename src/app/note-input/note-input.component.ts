@@ -46,6 +46,11 @@ export class NoteInputComponent implements OnInit {
         null
       )
       this.selectionMade.emit(selected);
+    } else {
+      this.authService.errorMessage = "You must login to create notes!";
+      setTimeout(() => {
+        this.authService.errorMessage = null;
+      }, 3000);
     }
   }
 

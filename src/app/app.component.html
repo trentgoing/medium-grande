@@ -322,6 +322,10 @@
     </a>
   </div>
 </div>
-
+<div *ngIf="authService.errorMessage !== null" class="notifier">
+  <h3>
+    {{authService.errorMessage}}
+  </h3>
+</div>
 <router-outlet></router-outlet>
 

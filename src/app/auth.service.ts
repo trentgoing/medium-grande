@@ -7,6 +7,7 @@ import { User } from './types/user';
 })
 export class AuthService {
   userInfo: User;
+  errorMessage: string = null;
 
   constructor(public router: Router) {
     let local: string = window.localStorage.getItem('userInfo');
@@ -23,27 +24,29 @@ export class AuthService {
     }
   }
 
-  signup(email: string, username: string, password: string): string {
+  signup(email: string, username: string, password: string): void {
     // 1st add the new user to the 'database' of all users
     let users: Array<User> = JSON.parse(window.localStorage.getItem('users'));
     // Check if email already exists
-    let conflict: boolean = false;
+    let conflict: boolean;
     users.forEach((user) => {
       if (user.email === email) {
         conflict = true;
       }
     });
     if (conflict === true) {
-      return 'That email is already taken';
+      this.errorMessage = 'That email is already taken';
+      setTimeout(() => {
+        this.errorMessage = null;
+      }, 3000);
     }
     users.push(new User((users.length), email, username, password));
     window.localStorage.setItem('users', JSON.stringify(users));
     // 2nd log the user in!
     this.login(username, password);
-    return '';
   }
 
-  login(username: string, password: string): string {
+  login(username: string, password: string): void {
     let users: Array<User> = JSON.parse(window.localStorage.getItem('users'));
     // Check if email already exists
     users.forEach((user) => {
@@ -52,9 +55,15 @@ export class AuthService {
           window.localStorage.setItem('userInfo', JSON.stringify(this.userInfo));
       }
     });
-    // redirect to home
-    this.router.navigate([""]);
-    return '';
+    if (this.userInfo === null) {
+      this.errorMessage = 'Invalid username and password combination';
+      setTimeout(() => {
+        this.errorMessage = null;
+      }, 3000);
+    } else {
+      // redirect to home
+      this.router.navigate([""]);
+    }
   }
 
   logout(): void {
@@ -63,7 +72,7 @@ export class AuthService {
     this.router.navigate([""]);
   }
 
-  changePassword(password: string, newpassword: string): string {
+  changePassword(password: string, newpassword: string): void {
     let users: Array<User> = JSON.parse(window.localStorage.getItem('users'));
     // Check if email already exists
     users.forEach((user, index) => {
@@ -74,11 +83,13 @@ export class AuthService {
           window.localStorage.setItem('userInfo', JSON.stringify(this.userInfo));
           window.localStorage.setItem('users', JSON.stringify(users));
           this.router.navigate([""]);
-          return '';
         }
       }
     });
-    return "NOOOO";
+    this.errorMessage = 'Incorrect password';
+    setTimeout(() => {
+      this.errorMessage = null;
+    }, 3000);
   }
 
 }
