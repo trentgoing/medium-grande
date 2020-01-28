@@ -48,6 +48,7 @@ export class ArticleService {
           markTagsToInsert.push([note.startCharacter, '<mark>'])
           markTagsToInsert.push([note.endCharacter, '</mark>'])
         });
+        console.log(JSON.stringify(markTagsToInsert));
         markTagsToInsert.sort(this.markTagSort);
         // let offset: number = 0;
         markTagsToInsert.forEach((tagArray, index)=> {
